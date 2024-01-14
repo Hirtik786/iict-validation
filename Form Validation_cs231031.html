@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+</head>
+<body>
+    <form action="#" method="get" id="userForm" name="userForm" onsubmit="return validateForm()" onreset="return resetForm()">
+        <!-- name -->
+        <label for="studentname">Name</label> <br>
+        <input type="text" value="" placeholder="Enter Your Name" id="txtStudentName" name="txtStudentName"> <br>
+        <!-- age -->
+        <label for="age">Age</label> <br>
+        <input type="number" value="" placeholder="Enter Your age" id="txtAge" name="txtAge"> <br>
+        <!-- email -->
+        <label for="email">Email</label> <br>
+        <input type="email" value="" placeholder="Enter Your email" id="txtEmail" name="txtEmail"> <br>
+        <!-- mobile number -->
+        <label for="number">Mobile Number</label> <br>
+        <input type="number" value="" placeholder="Enter Your Mobile Number" id="txtNumber" name="txtNumber"> <br>
+        <!-- password -->
+        <label for="password">Password</label> <br>
+        <input type="password" value="" placeholder="Enter Your password" id="txtPassword" name="txtPassword"> <br>
+        <!-- confirm password -->
+        <label for="confirmPassword">Confirm Password</label> <br>
+        <input type="password" value="" placeholder="Enter Your confirm password" id="txtConfirmPassword" name="txtConfirmPassword"> <br>
+        <!-- buttons -->
+        <span id="message"></span> <br>
+        <button type="submit" name="submit">Submit</button>
+        <button type="reset" name="Reset">Reset</button>
+    </form>
+    <script>
+        let name = document.getElementById("txtStudentName");
+        let Age = document.getElementById("txtAge");
+        let Email = document.getElementById("txtEmail");
+        let Mobile = document.getElementById("txtNumber");
+        let Password = document.getElementById("txtPassword");
+        let cPassword = document.getElementById("txtConfirmPassword");
+        let message = document.getElementById("message");
+
+        function validateForm() {
+            if (name.value== "") {
+                message.style.color = "red"
+                message.innerHTML = "&#x2718; Name Required ";
+            } else if (Age.value == "") {
+                message.style.color = "red"
+                message.innerHTML = "&#x2718; Age Required";
+            } else if (Age.value >35) {
+                message.style.color = "red"
+                message.innerHTML = "&#x2718; Age must less than 35";
+            } else if (Email.value == "") {
+                message.style.color = "red"
+                message.innerHTML = "&#x2718; Email Required";
+            }else if (Mobile.value == "") {
+                message.style.color = "red"
+                message.innerHTML = "&#x2718; Mobile Number Required";
+            }else if (Mobile.value.length !== 11) {
+                message.style.color = "red"
+                message.innerHTML = "&#x2718; Mobile Number is not correct";
+            } else if (Password.value == "") {
+                message.style.color = "red"
+                message.innerHTML = "&#x2718; Password Required";
+            } else if (cPassword.value == "") {
+                message.style.color = "red"
+                message.innerHTML = "&#x2718; Confirm Password Required";
+            } else if (Password.value !== cPassword.value) {
+                message.style.color = "red"
+                message.innerHTML = "&#x2718; password didn't matched with confirm password";
+            } else{
+                message.style.color = "green"
+                message.innerHTML = "&#x2714; Submitted";
+
+                name.value = "";
+                Email.value = "";
+                Mobile.value = ""
+                Age.value = "";
+                cPassword.value = "";
+                Password.value = "";
+            }
+            return false;
+        }
+        function resetForm(){
+            name.value = "";
+            Age.value = "";
+            Email.value = "";
+            Mobile.value = ""
+            Password.value = "";
+            cPassword.value = "";
+            message.innerHTML = "";
+        }
+</script>
+</body>
+</html>
